@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "campus-rag-assistant"
+version = "0.1.0"
+description = "Campus/enterprise knowledge-base RAG assistant for AI application engineer job-search portfolio."
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.110.0",
+  "uvicorn[standard]>=0.27.0",
+  "streamlit>=1.32.0",
+  "requests>=2.31.0",
+  "pypdf>=4.0.0",
+  "python-multipart>=0.0.9"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
