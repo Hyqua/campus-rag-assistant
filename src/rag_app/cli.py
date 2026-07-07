@@ -16,7 +16,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     ask_parser = subparsers.add_parser("ask", help="Ask a question")
     ask_parser.add_argument("question")
-    ask_parser.add_argument("--top-k", type=int, default=3)
+    ask_parser.add_argument("--top-k", type=int, default=2)
 
     subparsers.add_parser("stats", help="Show index status")
 

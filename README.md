@@ -25,9 +25,16 @@
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+pip install -e .
 python -m rag_app.cli ingest sample_docs\campus_policy.md
 python -m rag_app.cli ask "学生如何申请奖学金？"
+```
+
+也可以使用安装后的命令：
+
+```powershell
+rag-assistant ingest sample_docs\campus_policy.md
+rag-assistant ask "学生如何申请奖学金？"
 ```
 
 查看或清理本地索引：
@@ -49,10 +56,10 @@ uvicorn rag_app.api.main:app --reload --host 127.0.0.1 --port 8000
 streamlit run src\rag_app\ui\streamlit_app.py
 ```
 
-如果使用源码目录运行时找不到包，请先执行：
+如果出现 `No module named 'rag_app'`，说明项目还没有安装到当前虚拟环境，请在项目根目录执行：
 
 ```powershell
-$env:PYTHONPATH="src"
+pip install -e .
 ```
 
 ## API
@@ -78,7 +85,7 @@ Form-data:
 ```json
 {
   "question": "学生如何申请奖学金？",
-  "top_k": 3
+  "top_k": 2
 }
 ```
 
@@ -86,7 +93,7 @@ Form-data:
 
 ```json
 {
-  "answer": "...",
+  "answer": "问题：学生如何申请奖学金？\n\n回答：学生申请奖学金需要提交成绩单、个人陈述、导师推荐信和获奖证明。申请流程包括填写申请表、上传材料、导师推荐和学院评审公示。\n\n来源：\n[1] campus_policy.md / campus_policy.md::0",
   "sources": [
     {
       "source": "campus_policy.md",

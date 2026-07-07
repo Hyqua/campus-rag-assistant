@@ -16,5 +16,8 @@ dependencies = [
   "python-multipart>=0.0.9"
 ]
 
+[project.scripts]
+rag-assistant = "rag_app.cli:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
